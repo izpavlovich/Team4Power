@@ -1,3 +1,4 @@
+<<<<<<< HEAD:jenkinsfile
 podTemplate(
     label: 'apipoi',
     containers: [
@@ -20,3 +21,8 @@ podTemplate(
         }
     }
 }
+=======
+node {
+    echo 'Hello World'
+}
+>>>>>>> b7964c74ece0c4fcab2796d5a97b31600c5891ff:Jenkinsfile
