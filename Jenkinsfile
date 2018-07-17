@@ -12,8 +12,7 @@ podTemplate(
                     withCredentials([azureServicePrincipal('azure_sp'), secretText('acr_pass'), secretText('acr_user')]) {
                         sh """
                         az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
-                        az acr login -n $acr_user -p $acr_pass -u $acr_user
-                        az acr build --registry $acr_user -f Dockerfile --image devopsoh/api-hello:1.0  ./apis/poi/web
+                        az acr build --registry ohdrteam04acr -f Dockerfile --image devopsoh/api-hello:1.0  ./apis/poi/web
                         """
                     }
                 }
