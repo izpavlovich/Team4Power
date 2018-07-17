@@ -11,8 +11,9 @@ podTemplate(
                 stage('Docker Build POI API') {
                     withCredentials([azureServicePrincipal('azure_sp')]) {
                         sh """
-                        az login --service-principal -u 7aca892e-f9bd-4eba-84c2-636e7273a526 -p 9543f660db7ee1b925b3 --tenant f936f040-917b-4d70-a0c5-277ca7322c9e
-                        az acr build --registry ohdrteam04acr -f Dockerfile --image devopsoh/poi-hello  ./apis/poi/web
+                        az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
+                        az acr login -n $acr_user -p $acr_pass -u $acr_user
+                        az acr build --registry $acr_user -f Dockerfile --image devopsoh/api-hello:1.0  ./apis/poi/web
                         """
                     }
                 }
