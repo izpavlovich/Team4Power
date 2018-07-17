@@ -9,7 +9,7 @@ podTemplate(
             git 'https://github.com/Azure-Samples/openhack-devops-team.git'
             container('az'){
                 stage('Docker Build POI API') {
-                    withCredentials([azureServicePrincipal('azure_sp')]) {
+                    withCredentials([azureServicePrincipal('azure_sp'), secretText('acr_pass'), secretText('acr_user')]) {
                         sh """
                         az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
                         az acr login -n $acr_user -p $acr_pass -u $acr_user
