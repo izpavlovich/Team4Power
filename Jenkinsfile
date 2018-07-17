@@ -18,5 +18,14 @@ podTemplate(
                 }
             }
         }
+        stage('Deploy CD') {
+            container('Docker') {
+                stage('Deploy Packer Image with Terraform') {
+                    ./apis/poi/web/build_deploy_poi.sh
+                }
+            }
+        }
+
+        }
     }
 }
