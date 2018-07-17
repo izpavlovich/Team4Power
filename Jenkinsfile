@@ -21,7 +21,9 @@ podTemplate(
         stage('Deploy CD') {
             container('Docker') {
                 stage('Deploy Packer Image with Terraform') {
+                    sh """
                     ./apis/poi/web/build_deploy_poi.sh
+                    """
                 }
             }
         }
