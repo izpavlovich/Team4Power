@@ -18,15 +18,13 @@ podTemplate(
                 }
             }
         }
-        stage('Deploy CD') {
-            container('Docker') {
-                stage('Deploy Packer Image with Terraform') {
-                    sh """
-                    ./apis/poi/web/build_deploy_poi.sh
-                    """
-                }
+
+        stage ('compile and test') {
+
+            container('az') {
+                sh "./apis/poi/build_deploy_poi.sh"
             }
-        }
+
 
         }
     }
