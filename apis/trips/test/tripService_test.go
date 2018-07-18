@@ -21,7 +21,7 @@ var apiTestList = []apiTestCase{
 		method:           "GET",
 		url:              "/api/healthcheck/trips",
 		status:           200,
-		expectedResponse: `{"message": "Trip Service Healthcheck","status": "Healthy"}`,
+		expectedResponse: `{"message": "Trip Service Healthcheck OK","status": "Healthy"}`,
 	},
 	{
 		tag:    "t1 - Get all trips",
