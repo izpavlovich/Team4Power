@@ -14,7 +14,7 @@ env:
   webServerBaseUri: 'http://localhost'
 service:
   externalPort: 80
-  name: api-trips-hello-svc
+  name: api-trips-svc
 ingress:
   enabled: true
   annotations:
@@ -24,19 +24,19 @@ ingress:
       host: changeme
       paths:
       - path: /api/trips
-        serviceName: api-trips-hello-svc
+        serviceName: api-trips-svc
         servicePort: 80
       - path: /api/healthcheck/trips
-        serviceName: api-trips-hello-svc
+        serviceName: api-trips-svc
         servicePort: 80
       - path: /api/docs/trips/
-        serviceName: api-trips-hello-svc
+        serviceName: api-trips-svc
         servicePort: 80
       - path: /api/docs/trips
-        serviceName: api-trips-hello-svc
+        serviceName: api-trips-svc
         servicePort: 80
       - path: /api/json
-        serviceName: api-trips-hello-svc
+        serviceName: api-trips-svc
         servicePort: 80
 resources: {}
  # We usually recommend not to specify default resources and to leave this as a conscious

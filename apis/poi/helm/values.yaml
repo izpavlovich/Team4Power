@@ -13,7 +13,7 @@ image:
   containerPort: 8080
 service:
   externalPort: 80
-  name: api-poi-hello-svc
+  name: api-poi-svc
 ingress:
   enabled: true
   annotations:
@@ -23,16 +23,16 @@ ingress:
       host: changeme
       paths:
       - path: /api/poi
-        serviceName: api-poi-hello-svc
+        serviceName: api-poi-svc
         servicePort: 80
       - path: /api/healthcheck/poi
-        serviceName: api-poi-hello-svc
+        serviceName: api-poi-svc
         servicePort: 80
       - path: /api/docs/poi
-        serviceName: api-poi-hello-svc
+        serviceName: api-poi-svc
         servicePort: 80
       - path: /swagger/docs/poi
-        serviceName: api-poi-hello-svc
+        serviceName: api-poi-svc
         servicePort: 80        
   tls: []
   #  - secretName: chart-example-tls

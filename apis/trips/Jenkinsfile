@@ -10,7 +10,7 @@ podTemplate(
             envVar(key: 'INGRESS_URL', value: 'akstraefikohdrteam04.westus.cloudapp.azure.com'),
             envVar(key: 'AKS_RG', value: 'ohdrteam04rg'),
             envVar(key: 'AKS_NAME', value: 'ohdrteam04aks'),
-            envVar(key: 'IMAGE_NAME', value: 'devopsoh/api-trips-hellow')
+            envVar(key: 'IMAGE_NAME', value: 'devopsoh/api-trips')
     ]
 
 ) {
@@ -34,9 +34,9 @@ podTemplate(
         stage ('Compile and test') {
             container('helm-builder'){
                 sh """
-                cd $WORKSPACE/apis/trips
+                cd $WORKSPACE/apis/trips/helm
                 helm init
-                helm upgrade api-trips-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL helm
+                helm upgrade api-trips --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL .
                 """
             }
         }
