@@ -12,6 +12,7 @@ image:
   containerPort: 8080
 service:
   externalPort: 80
+  name: api-userprofile-hello-svc
 ingress:
   enabled: true
   annotations:
@@ -21,13 +22,13 @@ ingress:
       host: changeme
       paths:
       - path: /api/user
-        serviceName: api-user-svc
+        serviceName: api-userprofile-hello-svc
         servicePort: 80
       - path: /api/docs/user
-        serviceName: api-user-svc
+        serviceName: api-userprofile-hello-svc
         servicePort: 80
       - path: /api/healthcheck/user
-        serviceName: api-user-svc
+        serviceName: api-userprofile-hello-svc
         servicePort: 80
 resources: {}
  # We usually recommend not to specify default resources and to leave this as a conscious
