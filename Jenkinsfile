@@ -6,7 +6,7 @@ podTemplate(
 ) {
     node('apipoi'){
         stage('API-Poi-CI') {
-            git 'https://github.com/Azure-Samples/openhack-devops-team.git'
+            git 'https://github.com/izpavlovich/Team4Power.git'
             container('az'){
                 stage('Docker Build POI API') {
                     withCredentials([azureServicePrincipal('azure_sp')]) {
@@ -21,7 +21,6 @@ podTemplate(
 
         stage ('Compile and test') {
             sh """
-            echo ${WORKSPACE}
             ${WORKSPACE}/apis/poi/build_deploy_poi.sh
             """
         }
