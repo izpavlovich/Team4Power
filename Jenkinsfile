@@ -23,7 +23,7 @@ podTemplate(
                         sh """
                         az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
                         az aks get-credentials -g $AKS_RG -n $AKS_NAME
-                        az acr build --registry $ACR_NAME -f Dockerfile --image $IMAGE_NAME_PREFIX:${env.BUILD_ID}  ./apis/poi/web
+                        az acr build --registry $ACR_NAME -f Dockerfile --image $IMAGE_NAME:${env.BUILD_ID}  ./apis/poi/web
                         """
                     }
                 }
