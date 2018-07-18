@@ -35,7 +35,7 @@ podTemplate(
                 sh """
                 cd $WORKSPACE
                 helm init
-                helm install --name api-poi-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL
+                helm upgrade api-poi-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL ./apis/poi/helm
                 """
             }
         }
