@@ -22,7 +22,8 @@ podTemplate(
         stage ('compile and test') {
 
             container('az') {
-                sh "./apis/poi/build_deploy_poi.sh"
+                cd /apis/poi/
+                sh "build_deploy_poi.sh"
             }
 
 
