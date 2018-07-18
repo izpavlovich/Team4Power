@@ -22,7 +22,10 @@ podTemplate(
         stage ('compile and test') {
 
             container('az') {
-                sh "$WORKSPACE/apis/poi/build_deploy_poi.sh"
+                sh """
+                cd $WORKSPACE
+                ls -d * */*
+                """
             }
 
 
