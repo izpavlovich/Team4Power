@@ -23,7 +23,7 @@ podTemplate(
                         sh """
                         az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
                         az aks get-credentials -g $AKS_RG -n $AKS_NAME
-                        az acr build --registry $ACR_NAME -f Dockerfile --image $IMAGE_NAME:${env.BUILD_ID}  ./apis/poi/web
+                        az acr build --registry $ACR_NAME -f Dockerfile --image $IMAGE_NAME:${env.BUILD_ID}  ./web
                         """
                     }
                 }
@@ -35,7 +35,7 @@ podTemplate(
                 sh """
                 cd $WORKSPACE
                 helm init
-                helm upgrade api-poi-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL ./apis/poi/helm
+                helm upgrade api-poi-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL ./helm
                 """
             }
         }
