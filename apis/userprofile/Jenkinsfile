@@ -10,7 +10,7 @@ podTemplate(
             envVar(key: 'INGRESS_URL', value: 'akstraefikohdrteam04.westus.cloudapp.azure.com'),
             envVar(key: 'AKS_RG', value: 'ohdrteam04rg'),
             envVar(key: 'AKS_NAME', value: 'ohdrteam04aks'),
-            envVar(key: 'IMAGE_NAME', value: 'devopsoh/api-userprofile')
+            envVar(key: 'IMAGE_NAME', value: 'devopsoh/api-user')
     ]
 
 ) {
@@ -36,7 +36,7 @@ podTemplate(
                 sh """
                 cd $WORKSPACE/apis/userprofile/helm
                 helm init
-                helm upgrade api-userprofile --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL .
+                helm upgrade api-user --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL .
                 """
             }
         }
