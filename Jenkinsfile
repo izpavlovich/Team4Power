@@ -19,14 +19,11 @@ podTemplate(
             }
         }
 
-        stage ('compile and test') {
-
-            container('az') {
-                cd /apis/poi/
-                sh "build_deploy_poi.sh"
-            }
-
-
+        stage ('Compile and test') {
+            sh """
+            echo ${WORKSPACE}
+            ${WORKSPACE}/apis/poi/build_deploy_poi.sh
+            """
         }
     }
 }
