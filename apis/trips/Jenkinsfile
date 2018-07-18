@@ -21,6 +21,7 @@ podTemplate(
                 stage('Docker Build POI API') {
                     withCredentials([azureServicePrincipal('azure_sp')]) {
                         sh """
+                        cd $WORKSPACE/apis/trips
                         az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
                         az aks get-credentials -g $AKS_RG -n $AKS_NAME
                         az acr build --registry $ACR_NAME -f Dockerfile --image $IMAGE_NAME:${env.BUILD_ID}  .
@@ -33,7 +34,7 @@ podTemplate(
         stage ('Compile and test') {
             container('helm-builder'){
                 sh """
-                cd $WORKSPACE
+                cd $WORKSPACE/apis/trips
                 helm init
                 helm upgrade api-trips-hello --set repository.image=${ACR_NAME}.azurecr.io/${IMAGE_NAME},repository.tag=${env.BUILD_ID},ingress.rules.endpoint.host=$INGRESS_URL helm
                 """
