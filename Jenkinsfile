@@ -24,7 +24,8 @@ podTemplate(
             container('az') {
                 sh """
                 cd $WORKSPACE
-                ls -d * */*
+                cd apis/poi
+                ls
                 """
             }
 
