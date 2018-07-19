@@ -17,9 +17,9 @@ var (
 	Fatal *log.Logger
 )
 
-// Client - Pretty declaration of our telemetry client application insights
+// aiClient - Application Insights Client
 var (
-	client = ai.NewTelemetryClient("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607")
+	aiClient = ai.NewTelemetryClient("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607")
 )
 
 // InitLogging - Initialize logging for trips api
@@ -48,27 +48,28 @@ func Logger(inner http.Handler, name string) http.Handler {
 
 		inner.ServeHTTP(w, r)
 		Info.Println(fmt.Sprintf(
-			"%s %s %s %s",
+			"Method: %s, Host: %s, URL: %s, RequestURI: %s, Name: %s, Time: %s",
 			r.Method,
+			r.Host,
+			r.URL,
 			r.RequestURI,
 			name,
 			time.Since(start),
 		))
 
 		request := ai.NewRequestTelemetry(r.Method, r.RequestURI, time.Since(start), fmt.Sprintf("%s", r.Response.StatusCode))
-		client.Track(request)
-
+		aiClient.Track(request)
 	})
 }
 
 func LogMessage(msg string) {
 	Info.Println(msg)
-	client.TrackEvent(msg)
+	aiClient.TrackEvent(msg)
 }
 
 func LogError(err error, msg string) {
 	Info.Println(msg)
-	client.TrackException(msg)
 	Debug.Println(err.Error())
+	aiClient.TrackException(err)
 
 }
