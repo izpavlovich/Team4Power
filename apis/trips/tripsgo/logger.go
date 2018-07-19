@@ -45,7 +45,6 @@ func InitLogging(
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
-
 		inner.ServeHTTP(w, r)
 		Info.Println(fmt.Sprintf(
 			"Method: %s, Host: %s, URL: %s, RequestURI: %s, Name: %s, Time: %s",
@@ -56,8 +55,8 @@ func Logger(inner http.Handler, name string) http.Handler {
 			name,
 			time.Since(start),
 		))
-
-		request := ai.NewRequestTelemetry(r.Method, r.RequestURI, time.Since(start), "200")
+		route := fmt.Sprintf("%s%s", r.Host, r.RequestURI)
+		request := ai.NewRequestTelemetry(r.Method, route, time.Since(start), "200")
 		aiClient.Track(request)
 	})
 }
