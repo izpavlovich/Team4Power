@@ -32,9 +32,9 @@ App.use(BodyParser.urlencoded({
 }));
 
 App.use(Swaggerize({
-    api: Path.resolve('apis/userprofile/config/swagger.json'),
-    handlers: Path.resolve('apis/userprofile/handlers')
-}));
+    api: Path.resolve('./config/swagger.json'),
+    handlers: Path.resolve('./handlers')
+}))
 
 App.use('/api/docs/user', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
