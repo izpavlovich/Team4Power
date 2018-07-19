@@ -1,6 +1,5 @@
 'use strict';
 var dataProvider = require('../data/user.js');
-const appInsights = require("express-ai");
 /**
  * Operations on /user
  */
@@ -19,8 +18,6 @@ module.exports = {
          */
         var status = 200;
         var provider = dataProvider['get']['200'];
-        appInsights.setup("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607");
-        appInsights.start();
         provider(req, res, function (err, data) {
             if (err) {
                 next(err);
