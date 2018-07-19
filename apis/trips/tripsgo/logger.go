@@ -57,7 +57,7 @@ func Logger(inner http.Handler, name string) http.Handler {
 			time.Since(start),
 		))
 
-		request := ai.NewRequestTelemetry(r.Method, r.RequestURI, time.Since(start), fmt.Sprintf("%s", r.Response.StatusCode))
+		request := ai.NewRequestTelemetry(r.Method, r.RequestURI, time.Since(start), "200")
 		aiClient.Track(request)
 	})
 }
