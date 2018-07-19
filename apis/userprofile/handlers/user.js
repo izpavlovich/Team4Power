@@ -19,7 +19,7 @@ module.exports = {
          */
         var status = 200;
         var provider = dataProvider['get']['200'];
-        appInsights.setup("vw2y4xl1a8g1f1pzy30yfer3n31yoibdleve6oq8");
+        appInsights.setup("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607");
         appInsights.start();
         provider(req, res, function (err, data) {
             if (err) {
