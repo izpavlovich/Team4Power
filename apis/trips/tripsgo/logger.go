@@ -47,7 +47,6 @@ func Logger(inner http.Handler, name string) http.Handler {
 		start := time.Now()
 
 		inner.ServeHTTP(w, r)
-
 		Info.Println(fmt.Sprintf(
 			"Method: %s, Host: %s, URL: %s, RequestURI: %s, Name: %s, Time: %s",
 			r.Method,
@@ -60,7 +59,6 @@ func Logger(inner http.Handler, name string) http.Handler {
 
 		request := ai.NewRequestTelemetry(r.Method, r.RequestURI, time.Since(start), fmt.Sprintf("%s", r.Response.StatusCode))
 		aiClient.Track(request)
-
 	})
 }
 
@@ -73,4 +71,5 @@ func LogError(err error, msg string) {
 	Info.Println(msg)
 	Debug.Println(err.Error())
 	aiClient.TrackException(err)
+
 }
