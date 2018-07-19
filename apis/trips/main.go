@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Microsoft/ApplicationInsights-Go/appinsights"
-
 	sw "github.com/Azure-Samples/openhack-devops-team/apis/trips/tripsgo"
 )
 
@@ -25,7 +23,6 @@ func getEnv(key, fallback string) string {
 }
 
 func main() {
-	client := appinsights.NewTelemetryClient("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607")
 
 	var debug, present = os.LookupEnv("DEBUG_LOGGING")
 
