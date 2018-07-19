@@ -1,5 +1,7 @@
 'use strict';
 var dataProvider = require('../data/user.js');
+const appInsights = require("applicationinsights");
+
 /**
  * Operations on /user
  */
@@ -17,7 +19,9 @@ module.exports = {
          * For response `default` status 200 is used.
          */
         var status = 200;
-        var provider = dataProvider['get']['200'];
+        var provider = dataProvider['get']['200'];  
+        appInsights.setup("vw2y4xl1a8g1f1pzy30yfer3n31yoibdleve6oq8");
+        appInsights.start();
         provider(req, res, function (err, data) {
             if (err) {
                 next(err);
