@@ -1,6 +1,6 @@
 'use strict';
 var dataProvider = require('../data/user.js');
-const appInsights = require("applicationinsights");
+const appInsights = require("express-ai");
 /**
  * Operations on /user
  */
