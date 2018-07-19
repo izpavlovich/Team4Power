@@ -25,7 +25,7 @@ func getEnv(key, fallback string) string {
 }
 
 func main() {
-	client := appinsights.NewTelemetryClient("vw2y4xl1a8g1f1pzy30yfer3n31yoibdleve6oq8")
+	client := appinsights.NewTelemetryClient("91c2e8a3-5944-4ce4-bc6c-e5ee730cb607")
 
 	var debug, present = os.LookupEnv("DEBUG_LOGGING")
 
