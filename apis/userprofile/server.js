@@ -17,6 +17,8 @@ var Server = Http.createServer(App);
 
 var logger = morgan(':remote-addr [:date[web]] :method :url HTTP/:http-version :status :res[content-length] :referrer :user-agent :response-time ms');
 
+var ai = require("express-ai").loggers(App, '91c2e8a3-5944-4ce4-bc6c-e5ee730cb607', true);
+
 App.use(logger);
 
 App.use(function (req, res, next) {
@@ -32,12 +34,13 @@ App.use(BodyParser.urlencoded({
 App.use(Swaggerize({
     api: Path.resolve('./config/swagger.json'),
     handlers: Path.resolve('./handlers')
-}));
+}))
 
 App.use('/api/docs/user', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 Server.listen(8080, function () {
     App.swagger.api.host = this.address().address + ':' + this.address().port;
+    App.use(ai.logRequest);
     /* eslint-disable no-console */
     console.log('App running on %s:%d', this.address().address, this.address().port);
     /* eslint-disable no-console */
